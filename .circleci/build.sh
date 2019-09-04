@@ -8,7 +8,7 @@ git config --global user.email ${GITHUB_EMAIL}
 
 git clone --quiet --branch=$BRANCH https://${GITHUB_API_TOKEN}@github.com/$TARGET_REPO website > /dev/null
 cd website
-git rm -rf website/.
+git rm -rf .
 git add .
 cd ..
 
