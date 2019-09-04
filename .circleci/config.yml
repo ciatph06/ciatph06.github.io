@@ -8,6 +8,7 @@ jobs:
 
     environment:
       BRANCH: master
+      BRANCH_DEV: dev
       TARGET_REPO: ciatph06/ciatph06.github.io.git
     
     steps:
@@ -36,13 +37,13 @@ jobs:
       - run:
           name: Build
           command: |
-            if [ "${CIRCLE_BRANCH}" == "dev" ]; then
+            if [ "${CIRCLE_BRANCH}" == "${BRANCH_DEV}" ]; then
               npm run build
             fi          
 
       - deploy:
           name: Deploy
           command: |
-            if [ "${CIRCLE_BRANCH}" == "dev" ]; then
+            if [ "${CIRCLE_BRANCH}" == "${BRANCH_DEV}" ]; then
               bash .circleci/deploy.sh
             fi
