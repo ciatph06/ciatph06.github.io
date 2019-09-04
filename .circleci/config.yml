@@ -1,0 +1,45 @@
+version: 2.1
+jobs:
+  build:
+    docker: 
+      - image: circleci/node:7.10
+    
+    working_directory: ~/repo
+
+    environment:
+      BRANCH: master
+      TARGET_REPO: ciatph06/ciatph06.github.io.git
+    
+    steps:
+      - checkout # check out the code in the project directory
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run:
+          name: Install dependencies
+          command: npm install
+
+      - run:
+          name: Lint
+          command: npm run lint
+
+      #- add_ssh_keys:
+      #    fingerprints:
+      #      - "1e:1b:8e:46:b0:21:0b:0a:ac:17:17:95:75:a1:cc:d0"
+
+      - deploy:
+          name: Build and deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "dev" ]; then
+              bash .circleci/build.sh
+            fi          
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
