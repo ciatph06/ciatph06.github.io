@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  deploy-site:
+  build:
     docker: 
       - image: circleci/node:7.10
     
@@ -35,7 +35,10 @@ jobs:
 
       - run:
           name: Build
-          command: npm run build
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "dev" ]; then
+              npm run build
+            fi          
 
       - deploy:
           name: Deploy
