@@ -24,6 +24,11 @@ jobs:
           name: Install dependencies
           command: npm install
 
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
       - run:
           name: Lint
           command: npm run lint
@@ -37,9 +42,4 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" == "dev" ]; then
               bash .circleci/deploy.sh
-            fi          
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            fi
