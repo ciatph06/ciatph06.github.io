@@ -30,7 +30,7 @@ jobs:
 
       - run:
           name: Build
-          command: npm run buils
+          command: npm run build
 
       - deploy:
           name: Deploy
