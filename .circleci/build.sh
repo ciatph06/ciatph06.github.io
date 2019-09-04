@@ -8,13 +8,12 @@ git config --global user.email ${GITHUB_EMAIL}
 
 git clone --quiet --branch=$BRANCH https://${GITHUB_API_TOKEN}@github.com/$TARGET_REPO website > /dev/null
 cd website
-git rm -rf .
+git rm -rf website/.
 git add .
 cd ..
 
 cp -a dist/. website/.
-cd website
-git add -f .
+git add -f website/.
 
 if git commit -m "Deploying new files..." ; then
   git push -fq origin $BRANCH > /dev/null
