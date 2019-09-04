@@ -13,9 +13,10 @@ git add .
 cd ..
 
 cp -a dist/. website/.
-git add -f website/.
+cd website
+git add -f .
 
-if git commit -m "Deploying new files..." ; then
+if git commit -m "Deploying new files [skip ci] ..." ; then
   git push -fq origin $BRANCH > /dev/null
   echo -e "Deploy completed.\n"
 else
