@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  deploy-site:
     docker: 
       - image: circleci/node:7.10
     
