@@ -28,12 +28,12 @@ jobs:
           name: Lint
           command: npm run lint
 
-      #- add_ssh_keys:
-      #    fingerprints:
-      #      - "1e:1b:8e:46:b0:21:0b:0a:ac:17:17:95:75:a1:cc:d0"
+      - run:
+          name: Build
+          command: npm run buils
 
       - deploy:
-          name: Build and deploy
+          name: Deploy
           command: |
             if [ "${CIRCLE_BRANCH}" == "dev" ]; then
               bash .circleci/build.sh
