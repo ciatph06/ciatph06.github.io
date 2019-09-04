@@ -36,7 +36,7 @@ jobs:
           name: Deploy
           command: |
             if [ "${CIRCLE_BRANCH}" == "dev" ]; then
-              bash .circleci/build.sh
+              bash .circleci/deploy.sh
             fi          
 
       - save_cache:
