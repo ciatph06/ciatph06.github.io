@@ -14,7 +14,7 @@ export default {
   name: 'Info',
   data () {
     return {
-      msg: 'Information',
+      msg: 'Information Page',
     }
   },
 }
