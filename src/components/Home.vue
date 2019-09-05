@@ -38,6 +38,6 @@ a {
 }
 
 h1 {
-  color: red;
+  color: blue;
 }
 </style>
