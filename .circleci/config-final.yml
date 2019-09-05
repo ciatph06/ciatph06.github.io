@@ -9,6 +9,7 @@ jobs:
     environment:
       BRANCH: master
       BRANCH_DEV: dev
+      TARGET_REPO: ciatph06/ciatph06.github.io.git
     
     steps:
       - checkout # check out the code in the project directory
@@ -20,12 +21,10 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      # Install new dependencies
       - run:
           name: Install dependencies
           command: npm install
 
-      # Cache new dependencies (if any) for future use
       - save_cache:
           paths:
             - node_modules
