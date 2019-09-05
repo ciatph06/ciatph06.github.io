@@ -14,7 +14,7 @@ export default {
   name: 'Admin',
   data () {
     return {
-      msg: 'Admin',
+      msg: 'Admin Page',
     }
   },
 }
