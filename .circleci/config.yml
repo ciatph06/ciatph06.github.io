@@ -31,10 +31,12 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      # Run lint for syntax errors
       - run:
           name: Lint
           command: npm run lint
 
+      # Build the VueJS cli project
       - run:
           name: Build
           command: |
@@ -42,6 +44,7 @@ jobs:
               npm run build
             fi          
 
+      # Deploy to GitHub pages
       - deploy:
           name: Deploy
           command: |
